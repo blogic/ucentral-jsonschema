@@ -54,7 +54,8 @@ enum json_keywords {
 	json_keyword_description,
 	json_keyword_default,
 	json_keyword_format,
-	json_keyword_schema
+	json_keyword_schema,
+	json_keyword_id,
 };
 
 enum json_allowed_values {

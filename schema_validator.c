@@ -35,7 +35,8 @@ char *json_keywords_char[] = {
 	[json_keyword_description] = "description",
 	[json_keyword_default] = "default",
 	[json_keyword_format] = "format",
-	[json_keyword_schema] = "$schema"
+	[json_keyword_schema] = "$schema",
+	[json_keyword_id] = "$id",
 };
 
 char *json_keywords_constraints[][6] = {
@@ -70,8 +71,10 @@ char *json_keywords_constraints[][6] = {
 	{ "description", "6", "-1", "-1", "-1", "-1" },
 	{ "default", "-1", "-1", "-1", "-1", "-1" },
 	{ "format", "6", "-1", "-1", "7", "-1" },
-	{ "$schema", "6", "-1", "-1", "-1",
-	  "-1" }, // not handled yet, just add it to not get errors when it is present
+
+// not handled yet, just add it to not get errors when it is present
+	{ "$schema", "6", "-1", "-1", "-1", "-1" },
+	{ "$id", "6", "-1", "-1", "-1", "-1" },
 };
 
 struct json_enum_to_string_map json_types_id[] = {
