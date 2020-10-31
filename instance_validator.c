@@ -961,11 +961,13 @@ int json_validate_array_instance(struct jsonschema_object instance_object)
 	//validate the array itself.
 	int tmp_res = json_validate_array_keywords(instance_object);
 	//if the array has the items keyword and its type is object, we need it to validate array items
-	struct json_object *items_schema =
-		(json_object *)lh_table_lookup_entry(
+	struct json_object *items_schema = NULL;
+	struct lh_entry *items =
+		lh_table_lookup_entry(
 			json_object_get_object(instance_object.instance_schema),
-			"items")
-			->v;
+			"items");
+	if (items)
+		items_schema = (json_object *)items->v;
 	if (items_schema != NULL &&
 	    json_object_get_type(items_schema) == json_type_object) {
 		//validate array elements using the items schema
