@@ -1060,11 +1060,15 @@ int json_validate_object_instance(struct jsonschema_object instance_object)
 		json_printf_colored(ANSI_COLOR_CYAN, "***KEY: %s %d",
 				    instance_key, instance_object.object_pos);
 		/* if its an object, call this function again */
-		if (json_object_get_type(instance_value) == json_type_object)
+		if (json_object_get_type(instance_value) == json_type_object){
 			tmp_res = json_validate_object_instance(
 					  instance_object) &&
 				  tmp_res;
-		else { /* validate the key */
+		}else if (json_object_get_type(instance_value) == json_type_array){
+			tmp_res = json_validate_array_instance(
+					  instance_object) &&
+				  tmp_res;
+		}else { /* validate the key */
 			// get the type of the key
 			int key_type = json_get_key_type(schema_value);
 			//validate keywords that apply to any type
